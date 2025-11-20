@@ -1,6 +1,6 @@
 [project]
 name = "layla-client"
-version = "0.0.1"
+version = "0.0.2"
 description = "OCR Service Client for Layla"
 readme = "README.md"
 requires-python = ">=3.11,<3.14"

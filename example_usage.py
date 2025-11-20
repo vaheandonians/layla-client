@@ -312,8 +312,8 @@ def example_job_status(file_path: str):
             
             if status.status == "completed":
                 print(f"\n\n✅ Job completed!")
-                print(f"Result length: {len(status.markdown)} characters")
-                print(f"First 300 chars: {status.markdown[:300]}...")
+                print(f"Result length: {len(status.result)} characters")
+                print(f"First 300 chars: {status.result[:300]}...")
                 
                 delete_response = service.delete_job(job_response.job_id)
                 print(f"\n🗑️  {delete_response.message}")

@@ -15,7 +15,7 @@ class JobStatusResponse(BaseModel):
     status: str = Field(..., description="Current status of the job (processing/completed/failed)")
     model: Optional[str] = Field(None, description="OCR model used for processing")
     progress: Optional[str] = Field(None, description="Progress information if job is processing")
-    markdown: Optional[str] = Field(None, description="OCR result in markdown format")
+    result: Optional[str] = Field(None, description="OCR result in markdown format (only present if status is completed)")
     error: Optional[str] = Field(None, description="Error message if job failed")
 
 

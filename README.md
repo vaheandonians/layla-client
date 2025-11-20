@@ -161,7 +161,7 @@ job_id = service.asubmit_job(
 
 Get current status of a job.
 
-**Returns:** JobStatusResponse with status, progress, markdown, etc.
+**Returns:** JobStatusResponse with status, progress, result, etc.
 
 **Example:**
 ```python
@@ -240,7 +240,7 @@ class JobStatusResponse(BaseModel):
     status: str  # 'processing', 'completed', 'failed'
     model: Optional[str]
     progress: Optional[str]  # e.g., "Processing 12/36 pages"
-    markdown: Optional[str]  # Result when completed
+    result: Optional[str]    # Result when completed
     error: Optional[str]     # Error when failed
 ```
 

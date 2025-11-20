@@ -74,7 +74,7 @@ Layla is an **asynchronous OCR service**. Here's what happens when you submit a 
        │  6. GET /status/{job_id}     │        ✓
        │──────────────────────────────>│
        │  7. status: "completed"      │
-       │     + markdown result         │
+       │     + result (markdown text)  │
        │<──────────────────────────────│
        │                              │
 ```
@@ -352,7 +352,7 @@ while True:
     status = service.get_job_status(job_id)
     
     if status.status == "completed":
-        print(status.markdown)
+        print(status.result)
         service.delete_job(job_id)
         break
     elif status.status == "failed":
@@ -402,7 +402,7 @@ class JobStatusResponse:
     status: str           # "processing", "completed", or "failed"
     model: Optional[str]  # Model name
     progress: Optional[str]  # e.g., "Processing 5/10 pages"
-    markdown: Optional[str]  # Result (when completed)
+    result: Optional[str]    # Result (when completed)
     error: Optional[str]     # Error message (when failed)
 ```
 

@@ -191,6 +191,8 @@ class LaylaService:
     ) -> str:
         start_time = time.time()
         last_progress = None
+        missing_result_attempts = 5
+        missing_result_delay = max(0.2, poll_interval / 2)
         
         while True:
             elapsed = time.time() - start_time
@@ -200,9 +202,13 @@ class LaylaService:
             status_response = self.get_job_status(job_id)
             
             if status_response.status == 'completed':
-                if status_response.markdown is None:
+                if status_response.result is None:
+                    if missing_result_attempts > 0:
+                        missing_result_attempts -= 1
+                        time.sleep(missing_result_delay)
+                        continue
                     raise LaylaError("Job completed but no result returned")
-                return status_response.markdown
+                return status_response.result
             
             elif status_response.status == 'failed':
                 error_msg = status_response.error or "Unknown error"
